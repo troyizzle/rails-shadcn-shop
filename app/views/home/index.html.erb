@@ -1,0 +1,66 @@
+<%= render UI::AlertComponent.new do |alert| %>
+  <%= alert.with_title do %>
+    title
+  <% end %>
+  <%= alert.with_description do %>
+    DUDE!
+  <% end %>
+<% end %>
+
+<%= render UI::AvatarComponent.new do |avatar| %>
+  <%= avatar.with_image(src: "https://github.com/shadcn.png", alt: "test") %>
+  <%= avatar.with_fallback do %>
+    DUDE!
+  <% end %>
+<% end %>
+
+<%= render UI::CardComponent.new do |card| %>
+  <%= card.with_header do |header| %>
+    <%= header.with_title do %>
+      Card Title
+    <% end %>
+    <%= header.with_description do %>
+      Card Description
+    <% end %>
+  <% end %>
+  <%= card.with_body do |body| %>
+    body
+  <% end %>
+  <%= card.with_footer do %>
+    Footer
+  <% end %>
+<% end %>
+
+<%= render UI::ButtonComponent.new(data: { action: "click->ui--dialog#open" }) do %>
+  Open dialog
+<% end %>
+
+<%= render UI::DialogComponent.new do |dialog| %>
+  <%= dialog.with_body do |body| %>
+    <%= body.with_header do |header| %>
+      <%= header.with_title do %>
+        Dialog Title
+      <% end %>
+      <%= header.with_description do %>
+        Dialog description
+      <% end %>
+    <% end %>
+    dialog body
+
+    <%= body.with_footer do %>
+      Dialog footer
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render UI::InputComponent.new(type: "text", placeholder: "dog") %>
+Number
+<%= render UI::InputComponent.new(type: "number") %>
+
+<%= render UI::ButtonComponent.new(class_name: "bg-yellow-300") do %>
+  hello
+<% end %>
+
+<%= render UI::ButtonComponent.new(size: :lg, variant: :destructive) do %>
+  hello
+<% end %>

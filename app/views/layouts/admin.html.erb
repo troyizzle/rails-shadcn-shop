@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html class="dark">
+  <head>
+    <title>Shop</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body>
+    <div class="flex min-h-screen w-full flex-col bg-muted/40">
+      <%= render Admin::SidebarComponent.new %>
+      <div class="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <%= render Admin::HeaderComponent.new %>
+        <main class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

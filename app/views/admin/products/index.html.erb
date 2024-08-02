@@ -1,0 +1,83 @@
+<div class="flex items-center">
+  <div class="ml-auto flex items-center gap-2">
+    filter
+
+    <%= render UI::ButtonComponent.new size: :sm, variant: :outline, class: "h-8 gap-1" do %>
+      <%= lucide_icon "file", class: "h-3.5 w-3.5" %>
+      <span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
+        Export
+      </span>
+    <% end %>
+
+    <%= link_to new_admin_product_path, class: UI::ButtonComponent.button_variants(size: :sm, variant: :outline, classes: "h-8 gap-1") do %>
+      <%= lucide_icon "plus-circle", class: "h-3.5 w-3.5" %>
+      <span class="sr-only sm:not-sr-only sm:whitespace-nowrap">
+        Add Product
+      </span>
+    <% end %>
+  </div>
+</div>
+
+<%= render UI::CardComponent.new do |card| %>
+  <%= card.with_header do |header| %>
+    <%= header.with_title do %>
+      Products
+    <% end %>
+
+    <%= header.with_description do %>
+      Manage your products and view their sales performance.
+    <% end %>
+  <% end %>
+  <%= card.with_body do %>
+    <%= render UI::TableComponent.new do |table| %>
+      <%= table.with_header do |header| %>
+        <%= header.with_row do |row| %>
+          <%= row.with_head do %>
+            Name
+          <% end %>
+          <%= row.with_head do %>
+            Status
+          <% end %>
+          <%= row.with_head do %>
+            Actions
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= table.with_body do |body| %>
+        <%= body.with_row do |row| %>
+          <%= row.with_cell do %>
+            Dog
+          <% end %>
+          <%= row.with_cell do %>
+            Happy
+          <% end %>
+          <%= row.with_cell do %>
+            <%= render UI::DropdownComponent.new do |dropdown| %>
+              <% dropdown.with_trigger do %>
+                <%= render UI::ButtonComponent.new variant: :ghost,
+                  size: :icon,
+                  aria: { 'haspopup': true },
+                  data: { 
+                    "ui--popover-target": "trigger",
+                    action: "click->ui--popover#toggle" 
+                  } do %>
+                  <%= lucide_icon "more-horizontal", class: "w-4 h-4" %>
+                <% end %>
+              <% end %>
+
+              <%= dropdown.with_body side: :end, class: "w-56" do |body| %>
+                <%= body.with_label do %>
+                  Actions
+                <% end %>
+                <%= body.with_item do %>
+                  Edit
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

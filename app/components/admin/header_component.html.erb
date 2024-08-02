@@ -1,0 +1,51 @@
+<header class="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+  <%= render UI::ButtonComponent.new data: { 
+    controller: "event-emitter",  
+    event_emitter_event_name_value: "header_mobile",
+    event_emitter_event_detail_value: {},
+    action: "click->event-emitter#dispatchEvent"
+  } do %>
+  Open Sheet
+<% end %>
+
+<%= render UI::SheetComponent.new(side: :left, sheet_event: "header_mobile") do |sheet| %>
+  <%= sheet.with_header do |header| %>
+    <%= header.with_title do %>
+      Sheet title
+    <% end %>
+    <%= header.with_description do %>
+      Sheet description
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render UI::DropdownComponent.new do |dropdown| %>
+  <% dropdown.with_trigger do %>
+    <%= render UI::ButtonComponent.new variant: :outline,
+      size: :icon,
+      class: "overflow-hidden rounded-full",
+      data: { action: "click->ui--popover#toggle", "ui--popover-target": "trigger" } do %>
+      <img src="https://ui.shadcn.com/placeholder-user.jpg" alt="Avatar" width="36" height="36" class="overflow-hidden rounded-full" />
+    <% end %>
+  <% end %>
+
+  <% dropdown.with_body do |body| %>
+    <%= body.with_label do %>
+      My Account
+    <% end %>
+    <%= body.with_separator %>
+    <%= body.with_item do %>
+      Settings
+    <% end %>
+    <%= body.with_item do %>
+      Support
+    <% end %>
+
+    <%= body.with_separator %>
+
+    <%= body.with_item do %>
+      Logout
+    <% end %>
+  <% end %>
+<% end %>
+</header>
